@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 /**
@@ -19,6 +20,8 @@ public Dialog d;
 public Button Ok;
     TextView help_txt;
         String Message_to_show;
+
+
 
 public CustomDialogClass(Activity a,String msg) {
         super(a);
@@ -35,7 +38,11 @@ protected void onCreate(Bundle savedInstanceState) {
         Ok = (Button) findViewById(R.id.btn_okpopup);
     help_txt= (TextView)findViewById(R.id.help_txt);
     help_txt.setText(Message_to_show);
+
         Ok.setOnClickListener(this);
+
+
+
 
 
         }
