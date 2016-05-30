@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:id="@+id/start_screen_layout"
+    android:background="@drawable/tic_tac_background"
+    tools:context="com.example.manu.tic_tac_toe.StartScreen">
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/New_Game"
+        android:id="@+id/btn_newgame"
+        android:background="@drawable/mybutton"
+        android:layout_margin="5dp"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/Exit"
+        android:id="@+id/btn_exitgame"
+        android:layout_margin="5dp"
+        android:background="@drawable/mybutton"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Help"
+        android:layout_margin="5dp"
+        android:id="@+id/btn_help"
+        android:background="@drawable/mybutton"/>
+
+</LinearLayout>
