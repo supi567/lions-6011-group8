@@ -18,7 +18,7 @@ public class JUnitTestCases extends MainActivity{
 
     private MainActivity mainActivity;
     private StartScreen startScreen;
-    private char board[][] = new char[3][3];
+    private char board[][] = new char[3][3]; 
 
 
 
