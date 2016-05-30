@@ -92,11 +92,6 @@ public class MainActivity extends Activity {
             Matches_won_O.setText("Total Match Won by 'O' - "+Total_matches_won_by_O);
         }
         else if( winner =='\0'){
-<<<<<<< HEAD
-            
-=======
-            DialogeueBox( " It's a Tie ");
->>>>>>> 51b2ddb967f0184f6d225ab3b92a87289133aae6
         }
 
         if (winner == '\0') {
