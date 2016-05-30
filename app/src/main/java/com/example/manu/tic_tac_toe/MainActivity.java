@@ -1,9 +1,6 @@
 package com.example.manu.tic_tac_toe;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,10 +13,17 @@ public class MainActivity extends Activity {
     // it shows the game state:
     private boolean PlayerTurn = false; // Who's turn is it? false=X true=O
     private char board[][] = new char[3][3]; // it will represent the board as an array of characters
-    TextView t,Matches_won_X,Matches_won_O;
+    TextView turn_status,Matches_won_X,Matches_won_O;
     int Total_matches_won_by_X=0,Total_matches_won_by_O=0;
     private TableLayout Table_layout1;
     private static MainActivity mainActivity;
+    String[][] xoValues = new String[3][3];
+    String Turn="";
+    char Player;
+    public void setTurn(String turn){this.Turn=turn;}
+    public String getTurn(){return this.Turn;}
+    public void setPlayer(char player){this.Player=player;}
+    public char getPlayer(){return this.Player;}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,23 +36,18 @@ public class MainActivity extends Activity {
         mainActivity = this;
     }
 
-    public static MainActivity getInstance(){
-        return mainActivity;
-    }
+
 
     public void newGame(View view) {
         PlayerTurn = false;
         board = new char[3][3];
         resetButtons();
     }
-    public TableLayout getTable_layout(){
-        return Table_layout1;
-    }
 
 
-    public void resetButtons() {
+    private void resetButtons() {
 
-        Table_layout1 = (TableLayout) findViewById(R.id.tableLayout);
+        TableLayout Table_layout1 = (TableLayout) findViewById(R.id.tableLayout);
         for (int y = 0; y < Table_layout1.getChildCount(); y++) {
             if (Table_layout1.getChildAt(y) instanceof TableRow) {
                 TableRow TableRow = (TableRow) Table_layout1.getChildAt(y);
@@ -62,32 +61,42 @@ public class MainActivity extends Activity {
                 }
             }
         }
-        t = (TextView) findViewById(R.id.title_txt);
-        t.setText(R.string.title);
+        turn_status = (TextView) findViewById(R.id.title_txt);
+        turn_status.setText("X's Turn");
     }
 
     //this method return true if anyone has won and false if nobody win.
     private boolean checkWin() {
         if(PlayerTurn==false)
         {
-            t.setText("X's Turn");
+            setTurn("X's Turn");
+            turn_status.setText(Turn);
         }
-        else
-        t.setText("O's Turn");
+        else {
+            setTurn("O's Turn");
+            turn_status.setText(Turn);
+        }
 
         char winner = '\0';
-        if (checkWinner(board, 3, 'X')) {
-            winner = 'X';
+        if (checkWinner(board, 3, 'X'))
+        {
+            setPlayer('X');
+            winner = Player;
             Total_matches_won_by_X++;
-            Matches_won_X.setText("Total Match Won by X= "+Total_matches_won_by_X);
+            Matches_won_X.setText("Total Match Won by 'X' - "+Total_matches_won_by_X);
 
         } else if (checkWinner(board, 3, 'O')) {
-            winner = 'O';
+            setPlayer('O');
+            winner = Player;
             Total_matches_won_by_O++;
-            Matches_won_O.setText("Total Match Won by O= "+Total_matches_won_by_O);
+            Matches_won_O.setText("Total Match Won by 'O' - "+Total_matches_won_by_O);
+        }
+        else if( winner =='\0'){
+            
         }
 
         if (winner == '\0') {
+
             return false; // nobody won
         } else {
             // display winner on the text
@@ -119,7 +128,7 @@ public class MainActivity extends Activity {
      * players 'X' or 'O'
      * it return true if someone has won
      */
-    private boolean checkWinner(char[][] board, int size, char player) {
+    public boolean checkWinner(char[][] board, int size, char player) {
         // check each column
         for (int x = 0; x < size; x++) {
             int total = 0;
@@ -230,11 +239,11 @@ public class MainActivity extends Activity {
                 B.setText(PlayerTurn ? "O" : "X");
                 B.setTextSize(0);
                 if(B.getText()=="O") {
-                    B.setBackgroundResource(R.drawable.lib_circle);
+                    B.setBackgroundResource(R.drawable.new_circle);
                 }
                 else
                 {
-                    B.setBackgroundResource(R.drawable.lib_cross);
+                      B.setBackgroundResource(R.drawable.new_cross);
                 }
                 B.setEnabled(false);
                 PlayerTurn = !PlayerTurn;
